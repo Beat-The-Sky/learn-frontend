@@ -6,10 +6,21 @@
   <title>Моя первая программа</title>
   <link rel="stylesheet" href="css/styles.css">
   <script>
-    "use script";
-    const PI = 3.14
-    let r = 13
-    console.log(2 * PI * r)
+    "use strict"
+    let num = 99 // может принимать от 10 до 99
+
+    if (10 <= num && num <= 99) {
+      let numToString = String(num)
+      let sum = +numToString[0] + +numToString[1]
+      if (sum <= 9) {
+        alert('Сумма цифр числа однозначна ' + numToString)
+      } else {
+        alert('Сумма цифр числа двузначна ' + numToString)
+      }
+    } else {
+      alert('Не входит в диапазон от 10 до 99!!!')
+    }
+    console.log(num);
   </script>
 </head>
 
