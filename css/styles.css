@@ -1,25 +1,23 @@
 header {
-  background-color: #000;
+  background-color: green;
   background-size: cover;
 }
 
-.class {
-  width: 1000px;
+header a {
+  color: #fff;
+  text-decoration: none;
 }
 
-.class p {
+nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 300px;
-  height: 400px;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
 }
 
-.class p li {
-  list-style-type: disc;
-  color: #333;
+nav a {
+  padding: 20px 30px;
+}
+
+nav a:hover, nav a.active {
+  background-color: #165316;
 }
