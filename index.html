@@ -7,20 +7,27 @@
   <link rel="stylesheet" href="css/styles.css">
   <script>
     "use strict"
-    let num = 99 // может принимать от 10 до 99
+    let user = prompt('Кто там?')
 
-    if (10 <= num && num <= 99) {
-      let numToString = String(num)
-      let sum = +numToString[0] + +numToString[1]
-      if (sum <= 9) {
-        alert('Сумма цифр числа однозначна ' + numToString)
+    if(user == 'Админ') {
+
+      let passw = prompt('Пароль?')
+
+      if (passw == 'Я Главный') {
+        alert('Здравствуйте')
+      } else if(passw){
+        alert('Неверный пароль')
       } else {
-        alert('Сумма цифр числа двузначна ' + numToString)
+        alert('Отменено')
       }
-    } else {
-      alert('Не входит в диапазон от 10 до 99!!!')
-    }
-    console.log(num);
+
+    } else if(user){
+        alert('Я вас не знаю')
+      } else {
+        alert('Отменено')
+      }
+
+
   </script>
 </head>
 
