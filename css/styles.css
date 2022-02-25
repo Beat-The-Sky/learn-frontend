@@ -22,3 +22,7 @@ nav a {
 nav a:hover, nav a.active {
   background-color: #165316;
 }
+
+body {
+  background-image: url(../img/bg.png);
+}
