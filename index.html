@@ -6,57 +6,23 @@
   <title>Моя первая программа</title>
   <link rel="stylesheet" href="css/styles.css">
   <script>
-    'use strict'
-    function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    'use strict';
+    function func(arr) {
+      let result = [];
 
-    function isLucky(str) {
-      let sum1 = 0
-      let sum2 = 0
-      let num1 = str.length - str.length / 2
-      for (let i = 0, j = num1; i < str.length / 2; i++, j++) {
-        sum1 += +str[i]
-        sum2 += +str[j]
-      }
-      return sum1 == sum2
-    }
-
-    function normalizeNum(num, digitsAmount) {
-      let str = String(num)
-      return formStr('0', digitsAmount - str.length) + str
-    }
-
-    function formStr(data, length) {
-      let str = ''
-      for (let i = 0; i < length; i++) {
-        str += data
-      }
-      return str
-    }
-
-    function getLuckyTikets(digitsAmount) {
-      let result = []
-      let first = getFirst(digitsAmount)
-      let last = getLast(digitsAmount)
-
-      for (let i = first; i <= last; i++) {
-        let ticket = normalizeNum(i, digitsAmount)
-        if (isLucky(ticket)) {
-          result.push(ticket)
+      for (let elem of arr) {
+        if (typeof elem == 'object') {
+          result = result.concat(func(elem));
+        } else {
+          result.push(elem)
+          console.log(result);
         }
       }
-      return result
+
+      return result;
     }
 
-    function getLast(digitsAmount) {
-      return Number(formStr('9', digitsAmount))
-    }
-    function getFirst(digitsAmount) {
-      return Number('1' + formStr('0', digitsAmount / 2 - 1) + 1)
-    }
-    console.log(getLuckyTikets(8))
-
+    console.log(func([1, [2, 7, 8], [3, 4, [5, [6, 7]]]]));
   </script>
 </head>
 
