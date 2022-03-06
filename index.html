@@ -1,42 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 
 <head>
   <meta charset="utf-8">
   <title>Моя первая программа</title>
   <link rel="stylesheet" href="css/styles.css">
-  <script>
-    'use strict';
-    function func(arr) {
-      let result = [];
-
-      for (let elem of arr) {
-        if (typeof elem == 'object') {
-          result = result.concat(func(elem));
-        } else {
-          result.push(elem)
-        }
-      }
-
-      return result;
-    }
-
-    console.log(func([1, [2, 7, 8], [3, 4, [5, [6, 7]]]]));
-  </script>
 </head>
 
+
+
 <body>
-  <header>
-    <nav>
-      <a href="#">link1</a>
-      <a href="#" class="active">link2</a>
-      <a href="#">link3</a>
-      <a href="#">link4</a>
-      <a href="#">link5</a>
-    </nav>
-  </header>
-  моя первая программа
-  <div></div>
+  <input type="text" value="">
+  <!-- <p>0</p> -->
+  <button id="gen">Генерировать</button>
+
+  <script>
+    'use strict';
+    // let elems = document.querySelectorAll('.num');
+    let input = document.querySelector('input')
+    let gen = document.querySelector('#gen')
+    // let days1 = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб']
+    let charachter = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    let len = 15
+
+    gen.addEventListener('click', function () {
+      let word = ''
+      for (let i = 0; i < len; i++) {
+        word += randomChar(charachter)
+      }
+      input.value = word
+    })
+
+    function randomChar(charachter) {
+      return charachter[getRandomInt(0, charachter.length - 1)]
+    }
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    console.log(randomChar(charachter));
+
+
+  </script>
 </body>
 
 </html>
