@@ -42,3 +42,9 @@ nav a:hover, nav a.active {
 .num {
   display: block;
 }
+
+input {
+  margin-top: 30px;
+  width: 30px;
+  height: 20px;
+}

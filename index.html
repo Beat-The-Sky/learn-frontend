@@ -10,38 +10,46 @@
 
 
 <body>
-  <input type="text" value="">
-  <!-- <p>0</p> -->
-  <button id="gen">Генерировать</button>
+  <input id="a" type="text" value="" placeholder="Введите число"> X <sup>2</sup>
+  <input id="b" type="text" value="" placeholder="Введите число"> X
+  <input id="c" type="text" value="" placeholder="Введите число"> = 0
+  <p>0</p>
+  <button id="gen">Узнать корни</button>
 
   <script>
     'use strict';
     // let elems = document.querySelectorAll('.num');
-    let input = document.querySelector('input')
+    let a = document.querySelector('#a')
+    let b = document.querySelector('#b')
+    let c = document.querySelector('#c')
+    let p = document.querySelector('p')
     let gen = document.querySelector('#gen')
     // let days1 = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб']
-    let charachter = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    let len = 15
+    // let charachter = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
     gen.addEventListener('click', function () {
-      let word = ''
-      for (let i = 0; i < len; i++) {
-        word += randomChar(charachter)
-      }
-      input.value = word
-    })
+      let discriminant = b.value ** 2 - 4 * a.value * c.value
+      console.log(discriminant);
+      if (discriminant > 0) {
+        let x1 = (-b.value + Math.sqrt(discriminant)) / 2 / a.value
+        let x2 = (-b.value - Math.sqrt(discriminant)) / 2 / a.value
 
-    function randomChar(charachter) {
-      return charachter[getRandomInt(0, charachter.length - 1)]
-    }
+        p.innerHTML = 'x1 = ' + x1 + ', x2 = ' + x2
+      }
+      if (discriminant == 0) {
+        let x1 = (-b.value + Math.sqrt(discriminant)) / 2 / a.value
+        console.log(x1);
+
+        p.innerHTML = 'x1 = x2 = ' + x1
+      }
+      if (discriminant < 0) {
+        p.innerHTML = 'Корней нет'
+      }
+    })
 
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-
-    console.log(randomChar(charachter));
-
-
   </script>
 </body>
 
