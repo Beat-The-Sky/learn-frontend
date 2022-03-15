@@ -10,101 +10,36 @@
 
 
 <body>
-  <ul id="table"></ul>
-  <input id="name" type="text" placeholder="Введите имя"><br>
-  <input id="age" type="text" placeholder="Введите возраст"><br>
-  <input id="salary" type="text" placeholder="Введите зарплату"><br>
-  <button>Добавить</button>
+  <table id="table">
+    <tr>
+      <td data-row="1" data-col="1"></td>
+      <td data-row="1" data-col="2"></td>
+      <td data-row="1" data-col="3"></td>
+    </tr>
+    <tr>
+      <td data-row="2" data-col="1"></td>
+      <td data-row="2" data-col="2"></td>
+      <td data-row="2" data-col="3"></td>
+    </tr>
+    <tr>
+      <td data-row="3" data-col="1"></td>
+      <td data-row="3" data-col="2"></td>
+      <td data-row="3" data-col="3"></td>
+    </tr>
+  </table>
+  <button>Покрасить ячейку</button>
 
 
   <script>
     "use strict";
-    let employees = [
-      { name: 'employee1', age: 30, salary: 400 },
-      { name: 'employee2', age: 31, salary: 500 },
-      { name: 'employee3', age: 32, salary: 600 },
-    ];
-    let table = document.querySelector('#table')
-
-    for (const employee of employees) {
-      let li = document.createElement('li')
-
-      for (const key in employee) {
-        let span = document.createElement('span')
-        span.innerHTML = employee[key]
-        li.innerHTML += ' ' + key + ': '
-        li.appendChild(span)
-      }
-
-      let spans = li.querySelectorAll('span')
-      for (const span of spans) {
-        addEdit(span)
-      }
-
-      addRemoveTr(li)
-
-      table.appendChild(li)
-    }
-
-    let name = document.querySelector('#name')
-    let age = document.querySelector('#age')
-    let salary = document.querySelector('#salary')
     let button = document.querySelector('button')
+    let col = 2;
+    let row = 3;
 
     button.addEventListener('click', function () {
-      let li = document.createElement('li')
-
-      let obj = { name: name.value, age: age.value, salary: salary.value }
-
-      for (let key in obj) {
-        let span = document.createElement('span')
-        span.innerHTML = obj[key]
-        li.innerHTML += ' ' + key + ': '
-        li.appendChild(span)
-      }
-      name.value = ''
-      age.value = ''
-      salary.value = ''
-
-      let spans = li.querySelectorAll('span')
-      for (const span of spans) {
-        addEdit(span)
-      }
-      addRemoveTr(li)
-
-      table.appendChild(li)
+      let tds = document.querySelectorAll('#table td[data-col="' + col + '"]')
+      tds[row - 1].classList.add('active')
     })
-
-
-    function addEdit(span) {
-
-      span.addEventListener('click', function func() {
-        let input = document.createElement('input')
-        input.value = this.innerHTML
-        this.innerHTML = ''
-        input.addEventListener('blur', function () {
-          span.innerHTML = input.value
-          span.addEventListener('click', func)
-        })
-        this.appendChild(input)
-        input.classList.add('sized')
-        input.focus()
-        this.removeEventListener('click', func)
-      })
-
-    }
-
-    function addRemoveTr(li) {
-      let remove = document.createElement('a')
-      remove.href = ''
-      remove.innerHTML = 'удалить'
-      remove.classList.add('spacing')
-      remove.addEventListener('click', function (even) {
-        table.removeChild(li)
-        even.preventDefault()
-      })
-      li.appendChild(remove)
-    }
 
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
