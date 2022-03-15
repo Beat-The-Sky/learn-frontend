@@ -15,13 +15,78 @@
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
       <td></td>
       <td></td>
       <td></td>
@@ -31,23 +96,10 @@
 
   <script>
     "use strict";
-    let trs = document.querySelectorAll('#table tr')
+    let tds = document.querySelectorAll('#table tr:nth-child(even) td:nth-child(odd)')
 
-    for (let i = 0; i < trs.length; i++) {
-      let tds = trs[i].querySelectorAll('td')
-      for (let j = 0; j < tds.length; j++) {
-        tds[j].addEventListener('click', function () {
-          this.innerHTML = (i + 1) + '.' + (j + 1)
-          if (i == j) {
-            this.classList.add('color1')
-          } else {
-            this.classList.add('color2')
-          }
-        })
-        tds[j].dataset.row = i + 1
-        tds[j].dataset.col = j + 1
-        console.log(tds[j]);
-      }
+    for (const td of tds) {
+      td.classList.add('active')
     }
 
 
