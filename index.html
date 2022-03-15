@@ -12,34 +12,41 @@
 <body>
   <table id="table">
     <tr>
-      <td data-row="1" data-col="1"></td>
-      <td data-row="1" data-col="2"></td>
-      <td data-row="1" data-col="3"></td>
+      <td data-col="1"></td>
+      <td data-col="2"></td>
+      <td data-col="3"></td>
     </tr>
     <tr>
-      <td data-row="2" data-col="1"></td>
-      <td data-row="2" data-col="2"></td>
-      <td data-row="2" data-col="3"></td>
+      <td data-col="1"></td>
+      <td data-col="2"></td>
+      <td data-col="3"></td>
     </tr>
     <tr>
-      <td data-row="3" data-col="1"></td>
-      <td data-row="3" data-col="2"></td>
-      <td data-row="3" data-col="3"></td>
+      <td data-col="1"></td>
+      <td data-col="2"></td>
+      <td data-col="3"></td>
     </tr>
   </table>
-  <button>Покрасить ячейку</button>
 
 
   <script>
     "use strict";
-    let button = document.querySelector('button')
-    let col = 2;
-    let row = 3;
+    let trs = document.querySelectorAll('#table tr')
+    let col = 1;
+    for (const tr of trs) {
+      let tds = document.querySelectorAll('#table td[data-col="' + col + '"]');
 
-    button.addEventListener('click', function () {
-      let tds = document.querySelectorAll('#table td[data-col="' + col + '"]')
-      tds[row - 1].classList.add('active')
-    })
+      for (let td of tds) {
+        td.addEventListener('click', function () {
+          for (const td of tds) {
+            td.classList.add('active')
+          }
+        })
+      }
+
+      col++
+    }
+
 
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
