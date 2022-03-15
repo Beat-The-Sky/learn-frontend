@@ -12,19 +12,19 @@
 <body>
   <table id="table">
     <tr>
-      <td data-col="1"></td>
-      <td data-col="2"></td>
-      <td data-col="3"></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
-      <td data-col="1"></td>
-      <td data-col="2"></td>
-      <td data-col="3"></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
-      <td data-col="1"></td>
-      <td data-col="2"></td>
-      <td data-col="3"></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </table>
 
@@ -32,20 +32,16 @@
   <script>
     "use strict";
     let trs = document.querySelectorAll('#table tr')
-    let col = 1;
-    for (const tr of trs) {
-      let tds = document.querySelectorAll('#table td[data-col="' + col + '"]');
 
-      for (let td of tds) {
-        td.addEventListener('click', function () {
-          for (const td of tds) {
-            td.classList.add('active')
-          }
-        })
+    for (let i = 0; i < trs.length; i++) {
+      let tds = trs[i].querySelectorAll('td')
+      for (let j = 0; j < tds.length; j++) {
+        tds[j].dataset.row = i + 1
+        tds[j].dataset.col = j + 1
+        console.log(tds[j]);
       }
-
-      col++
     }
+    // td.dataset.col = 1
 
 
     function getRandomInt(min, max) {
