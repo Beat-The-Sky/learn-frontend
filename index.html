@@ -10,77 +10,115 @@
 
 
 <body>
-  <ul></ul>
-  <input id="creatLi" type="text">
+  <table id="table"></table>
+  <input id="name" type="text" placeholder="Введите имя"><br>
+  <input id="age" type="text" placeholder="Введите возраст"><br>
+  <input id="salary" type="text" placeholder="Введите зарплату"><br>
+  <button>Добавить</button>
 
 
   <script>
     "use strict";
-    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    let ul = document.querySelector('ul')
-    let creatLi = document.querySelector('#creatLi')
+    let employees = [
+      { name: 'employee1', age: 30, salary: 400 },
+      { name: 'employee2', age: 31, salary: 500 },
+      { name: 'employee3', age: 32, salary: 600 },
+    ];
+    let table = document.querySelector('#table')
 
+    for (const employee of employees) {
+      let tr = document.createElement('tr')
 
-    for (const item of arr) {
-      let li = document.createElement('li')
-      li.innerHTML = item
-      func2(li)
-      ul.appendChild(li)
+      let td1 = document.createElement('td')
+      td1.innerHTML = employee.name
+      tr.appendChild(td1)
+
+      let td2 = document.createElement('td')
+      td2.innerHTML = employee.age
+      tr.appendChild(td2)
+
+      let td3 = document.createElement('td')
+      td3.innerHTML = employee.salary
+      tr.appendChild(td3)
+
+      table.appendChild(tr)
     }
 
-    creatLi.addEventListener('blur', function () {
-      let li = document.createElement('li')
-      li.innerHTML = this.value
-      this.value = ''
-      func2(li)
-      ul.append(li)
+    let tds = document.querySelectorAll('td')
+
+    for (const td of tds) {
+      addEdit(td)
+    }
+
+
+    let trs = table.querySelectorAll('tr')
+    for (const tr of trs) {
+      addRemoveTr(tr)
+    }
+
+    let name = document.querySelector('#name')
+    let age = document.querySelector('#age')
+    let salary = document.querySelector('#salary')
+    let button = document.querySelector('button')
+
+    button.addEventListener('click', function () {
+      let tr = document.createElement('tr')
+
+      let td1 = document.createElement('td')
+      td1.innerHTML = name.value
+      name.value = ''
+      tr.appendChild(td1)
+
+      let td2 = document.createElement('td')
+      td2.innerHTML = age.value
+      age.value = ''
+      tr.appendChild(td2)
+
+      let td3 = document.createElement('td')
+      td3.innerHTML = salary.value
+      salary.value = ''
+      tr.appendChild(td3)
+
+      let tds = tr.querySelectorAll('td')
+      for (const td of tds) {
+        addEdit(td)
+      }
+
+      addRemoveTr(tr)
+      table.appendChild(tr)
     })
 
-    function func2(li) {
-      let span = document.createElement('span')
-      span.innerHTML = li.innerHTML
-      li.innerHTML = ''
-      span.addEventListener('click', function func() {
+    function addEdit(td) {
+
+      td.addEventListener('click', function func() {
         let input = document.createElement('input')
-        input.value = this.innerHTML
-        this.innerHTML = ''
+        if (!this.innerHTML) {
+          input.value = this.innerHTML
+          this.innerHTML = ''
+        }
         input.addEventListener('blur', function () {
-          span.innerHTML = this.value
-          span.addEventListener('click', func)
+          td.innerHTML = input.value
+          td.addEventListener('click', func)
         })
         this.appendChild(input)
+        input.classList.add('sized')
         input.focus()
         this.removeEventListener('click', func)
       })
 
-      li.appendChild(span)
-      li.appendChild(removeItem(li))
-      li.appendChild(addLineThrough(span))
-
     }
 
-    function removeItem(li) {
+    function addRemoveTr(tr) {
+      let td = document.createElement('td')
       let remove = document.createElement('a')
       remove.href = ''
-      remove.innerHTML = 'Удалить'
-      remove.classList.add('spacing')
-      remove.addEventListener('click', function (event) {
-        li.parentElement.removeChild(li)
-        event.preventDefault()
+      remove.innerHTML = 'удалить'
+      remove.addEventListener('click', function (even) {
+        table.removeChild(tr)
+        even.preventDefault()
       })
-      return remove
-    }
-
-    function addLineThrough(span) {
-      let lineTr = document.createElement('a')
-      lineTr.href = ''
-      lineTr.innerHTML = 'перечеркнуть'
-      lineTr.classList.add('spacing')
-      lineTr.addEventListener('click', function (event) {
-        span.classList.add('decored')
-        event.preventDefault()
-      })
-      return lineTr
+      td.appendChild(remove)
+      tr.appendChild(td)
     }
 
     function getRandomInt(min, max) {
