@@ -38,6 +38,11 @@
       for (let j = 0; j < tds.length; j++) {
         tds[j].addEventListener('click', function () {
           this.innerHTML = (i + 1) + '.' + (j + 1)
+          if (i == j) {
+            this.classList.add('color1')
+          } else {
+            this.classList.add('color2')
+          }
         })
         tds[j].dataset.row = i + 1
         tds[j].dataset.col = j + 1
