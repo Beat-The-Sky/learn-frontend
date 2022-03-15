@@ -24,27 +24,62 @@ nav a:hover, nav a.active {
   background-color: #165316;
 }
 
-.content {
-  width: 200px;
-  height: 100px;
-  border: 1px solid #000;
-  margin-bottom: 10px;
+div, ul {
+  padding: 20px;
 }
 
-.no-gap {
-  background-color: #333;
+.red {
+  background-color: #ff9393;
 }
 
-#fio {
-  width: 300px;
+.green {
+  background-color: #459145;
 }
 
-.num {
-  display: block;
+table td {
+  max-width: 50px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-input {
-  margin-top: 30px;
-  width: 30px;
-  height: 20px;
+.spacing {
+  margin-left: 10px;
+}
+
+.decored {
+  text-decoration: line-through;
+}
+
+.colored {
+  background-color: green;
+  color: white;
+}
+
+.colored .def {
+  background-color: #fff;
+}
+
+.hidden {
+  display: none;
+}
+
+.active {
+  background-color: #f88;
+  color: white;
+}
+
+.color1 {
+  background-color: #f88;
+}
+
+.color2 {
+  background-color: #8f8;
+}
+
+.color3 {
+  background-color: #ffe15d;
 }

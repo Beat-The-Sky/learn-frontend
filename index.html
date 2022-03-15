@@ -10,42 +10,78 @@
 
 
 <body>
-  <input id="a" type="text" value="" placeholder="Введите число"> X <sup>2</sup>
-  <input id="b" type="text" value="" placeholder="Введите число"> X
-  <input id="c" type="text" value="" placeholder="Введите число"> = 0
-  <p>0</p>
-  <button id="gen">Узнать корни</button>
+  <ul></ul>
+  <input id="creatLi" type="text">
+
 
   <script>
-    'use strict';
-    // let elems = document.querySelectorAll('.num');
-    let a = document.querySelector('#a')
-    let b = document.querySelector('#b')
-    let c = document.querySelector('#c')
-    let p = document.querySelector('p')
-    let gen = document.querySelector('#gen')
-    // let days1 = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб']
-    // let charachter = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    "use strict";
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    let ul = document.querySelector('ul')
+    let creatLi = document.querySelector('#creatLi')
 
-    gen.addEventListener('click', function () {
-      let discriminant = b.value ** 2 - 4 * a.value * c.value
-      console.log(discriminant);
-      if (discriminant > 0) {
-        let x1 = (-b.value + Math.sqrt(discriminant)) / 2 / a.value
-        let x2 = (-b.value - Math.sqrt(discriminant)) / 2 / a.value
 
-        p.innerHTML = 'x1 = ' + x1 + ', x2 = ' + x2
-      }
-      if (discriminant == 0) {
-        let x1 = (-b.value + Math.sqrt(discriminant)) / 2 / a.value
-        console.log(x1);
+    for (const item of arr) {
+      let li = document.createElement('li')
+      li.innerHTML = item
+      func2(li)
+      ul.appendChild(li)
+    }
 
-        p.innerHTML = 'x1 = x2 = ' + x1
-      }
-      if (discriminant < 0) {
-        p.innerHTML = 'Корней нет'
-      }
+    creatLi.addEventListener('blur', function () {
+      let li = document.createElement('li')
+      li.innerHTML = this.value
+      this.value = ''
+      func2(li)
+      ul.append(li)
     })
+
+    function func2(li) {
+      let span = document.createElement('span')
+      span.innerHTML = li.innerHTML
+      li.innerHTML = ''
+      span.addEventListener('click', function func() {
+        let input = document.createElement('input')
+        input.value = this.innerHTML
+        this.innerHTML = ''
+        input.addEventListener('blur', function () {
+          span.innerHTML = this.value
+          span.addEventListener('click', func)
+        })
+        this.appendChild(input)
+        input.focus()
+        this.removeEventListener('click', func)
+      })
+
+      li.appendChild(span)
+      li.appendChild(removeItem(li))
+      li.appendChild(addLineThrough(span))
+
+    }
+
+    function removeItem(li) {
+      let remove = document.createElement('a')
+      remove.href = ''
+      remove.innerHTML = 'Удалить'
+      remove.classList.add('spacing')
+      remove.addEventListener('click', function (event) {
+        li.parentElement.removeChild(li)
+        event.preventDefault()
+      })
+      return remove
+    }
+
+    function addLineThrough(span) {
+      let lineTr = document.createElement('a')
+      lineTr.href = ''
+      lineTr.innerHTML = 'перечеркнуть'
+      lineTr.classList.add('spacing')
+      lineTr.addEventListener('click', function (event) {
+        span.classList.add('decored')
+        event.preventDefault()
+      })
+      return lineTr
+    }
 
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
